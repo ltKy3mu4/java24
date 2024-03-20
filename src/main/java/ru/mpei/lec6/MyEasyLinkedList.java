@@ -21,12 +21,41 @@ public class MyEasyLinkedList<Type> implements List<Type> {
 
     @Override
     public boolean contains(Object o) {
+        if (first == null){
+            return false;
+        }
+        ElementWrapper<Type> current = first;
+        while (current.hasNext()){
+            if (current.getElement().equals(o)){
+                return  true;
+            } else {
+                current = current.getNext();
+            }
+        }
         return false;
     }
 
     @Override
     public Iterator<Type> iterator() {
-        return null;
+        return new Iterator<Type>() {
+            ElementWrapper<Type> current = first;
+            @Override
+            public boolean hasNext() {
+//                if (current != null && current.hasNext()){
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+                return current != null;
+            }
+
+            @Override
+            public Type next() {
+                Type val = current.getElement();
+                current = current.getNext();
+                return val;
+            }
+        };
     }
 
     @Override

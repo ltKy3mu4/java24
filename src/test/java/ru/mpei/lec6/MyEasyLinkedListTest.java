@@ -3,6 +3,7 @@ package ru.mpei.lec6;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,8 +62,44 @@ class MyEasyLinkedListTest {
 
         l.add("third");
         Assertions.assertEquals("third", l.get(0));
-
     }
 
+    @Test
+    public void containsTest(){
+        List<String> l = new MyEasyLinkedList<>();
+        l.add("first");
+        l.add("second");
+        l.add("third");
+        l.add("forth");
+
+        Assertions.assertTrue(l.contains("second"));
+        Assertions.assertFalse(l.contains("fifth"));
+    }
+
+    @Test
+    public void containsTest2(){
+        List<String> l = new MyEasyLinkedList<>();
+        Assertions.assertFalse(l.contains("fifth"));
+    }
+
+    @Test
+    public void iterTest(){
+        List<String> l = new MyEasyLinkedList<>();
+        l.add("first");
+        l.add("second");
+        l.add("third");
+        l.add("forth");
+
+        int count =0;
+        Iterator<String> iterator = l.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+            count++;
+        }
+
+
+        Assertions.assertEquals(4, count);
+
+    }
 
 }
